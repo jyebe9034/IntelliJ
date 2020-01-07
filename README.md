@@ -21,3 +21,6 @@
 ### ResponseEntity객체
 - data + http status code
 - 인자값으로 Map<key,value>을 가짐. 리턴시 map과 상태 메세지를 함께 전송함.
+
+### Whitelabel Error Page
+- 스트링 부트 프로젝트를 실행시켰을때 페이지를 찾지 못하면 브라우저에 뜨는 에러로 부트자체에 내장되어 있음.
