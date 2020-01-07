@@ -1,4 +1,4 @@
-# SpringBoot & IntelliJ
+# SpringBoot
 
 ### SpringBoot의 외부설정
 - 스프링 부트는 외부 설정을 통해 스프링 부트 어플리케이션의 환경설정 혹은 설정값을 정할 수 있음. 외부설정은 크게 properties, YAML, 환경변수, 커맨드 라인 인수 등이 있음.
