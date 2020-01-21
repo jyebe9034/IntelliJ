@@ -3,11 +3,11 @@
 Spring Boot 1.5.x버전에서는 @GeneratedValue의 기본값이 GenerationType.AUTO였음.
 
 ### Spring Boot 2.0 Release Notes를 찾아보면
-> Spring Boot 1.5.x에서는 Hibernate 5.0.x버전 사용
-> Spring Boot 2.0.x에서는 Hibernate 5.2.x버전 사용
+- Spring Boot 1.5.x에서는 Hibernate 5.0.x버전 사용
+- Spring Boot 2.0.x에서는 Hibernate 5.2.x버전 사용
 
 ### Spring Boot 2.0의 migration guide를 찾아보면
-> JPA의 Id generator에서 spring.jpa.hibernate.use-new-id-generator-mappings의 
+- JPA의 Id generator에서 spring.jpa.hibernate.use-new-id-generator-mappings의 
 default값이 true로 변경되어 패치되었다고 함.
 (1.5 JpaProperties.java에 보면 원래 default값이 false였음.)
 
