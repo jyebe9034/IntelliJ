@@ -9,6 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -22,14 +23,15 @@ import java.util.List;
 public class MemoServiceImpl implements MemoService {
 
     @Autowired
-    private MemoRepo memo;
+    private MemoRepo memoRepo;
 
     /**
      * select all
      * @return
      */
+    @Override
     public List<Memo> selectMemoList() {
-        return this.memo.findAll();
+        return this.memoRepo.findAll();
     }
 
     /**
@@ -37,7 +39,21 @@ public class MemoServiceImpl implements MemoService {
      * @param memo
      * @return
      */
-    public void insertMemo(Memo memo) { this.memo.save(memo); }
+    @Override
+    public void insertMemo(Memo memo) { this.memoRepo.save(memo); }
+
+    /**
+     * update memo
+     * 업데이트를 하기 위해서는 일단 pk로 조회를 해온 다음에 saveAndFlush()하면 됨.
+     * @param memo
+     */
+    @Override
+    public void updateMemo(Memo memo) {
+        Memo org = this.memoRepo.getOne(memo.getSeq());
+        org.setTitle(memo.getTitle());
+        org.setWriter(memo.getWriter());
+        this.memoRepo.saveAndFlush(org);
+    }
 
 /*
     @Bean("msg")

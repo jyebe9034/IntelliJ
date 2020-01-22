@@ -8,4 +8,6 @@ public interface MemoService {
     List<Memo> selectMemoList();
 
     void insertMemo(Memo memo);
+
+    void updateMemo(Memo memo);
 }
