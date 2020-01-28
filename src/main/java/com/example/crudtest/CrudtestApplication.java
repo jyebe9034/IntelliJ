@@ -42,8 +42,8 @@ public class CrudtestApplication {
         return ResponseEntity.ok(map);
     }
 
-    @DeleteMapping("/api/deleteData")
-    public ResponseEntity<Map<String, String>> deleteData(Long seq) {
+    @DeleteMapping("/api/deleteData/{seq}")
+    public ResponseEntity<Map<String, String>> deleteData(@PathVariable Long seq) {
         this.memo.deleteMemo(seq);
         Map<String, String> map = new HashMap<>();
         map.put("result", "success");
