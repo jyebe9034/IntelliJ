@@ -37,7 +37,16 @@ public class CrudtestApplication {
     public ResponseEntity<Map<String, String>> editData(@RequestBody Memo memo) {
         this.memo.updateMemo(memo);
         Map<String, String> map = new HashMap<>();
-        map.put("result","success");
+        map.put("result", "success");
+
+        return ResponseEntity.ok(map);
+    }
+
+    @DeleteMapping("/api/deleteData")
+    public ResponseEntity<Map<String, String>> deleteData(Long seq) {
+        this.memo.deleteMemo(seq);
+        Map<String, String> map = new HashMap<>();
+        map.put("result", "success");
 
         return ResponseEntity.ok(map);
     }

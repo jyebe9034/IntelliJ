@@ -10,4 +10,6 @@ public interface MemoService {
     void insertMemo(Memo memo);
 
     void updateMemo(Memo memo);
+
+    void deleteMemo(Long seq);
 }

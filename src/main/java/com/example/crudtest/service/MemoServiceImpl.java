@@ -5,16 +5,8 @@ import com.example.crudtest.model.Memo;
 import com.example.crudtest.repo.MemoRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
 import java.util.List;
 
 @Service
@@ -54,6 +46,13 @@ public class MemoServiceImpl implements MemoService {
         org.setWriter(memo.getWriter());
         this.memoRepo.saveAndFlush(org);
     }
+
+    /**
+     * delete memo
+     * @param seq
+     */
+    @Override
+    public void deleteMemo(Long seq) { this.memoRepo.deleteById(seq); }
 
 /*
     @Bean("msg")
