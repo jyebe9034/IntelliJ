@@ -1,7 +1,9 @@
 package com.example.crudtest;
 
 import com.example.crudtest.model.Memo;
+import com.example.crudtest.model.User;
 import com.example.crudtest.service.MemoService;
+import com.example.crudtest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,6 +20,18 @@ public class CrudtestApplication {
 
     @Autowired
     private MemoService memo;
+
+    @Autowired
+    private UserService service;
+
+    @GetMapping("/api/getUserInfo")
+    public ResponseEntity<Map<String, Object>> getUserInfo(User user) {
+        User userInfo = this.service.selectOneUser(user);
+        Map<String, Object> map = new HashMap<>();
+        map.put("result", userInfo);
+
+        return ResponseEntity.ok(map);
+    }
 
     @GetMapping("/api/getData")
     public ResponseEntity<List<Memo>> getData() {
