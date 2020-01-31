@@ -2,6 +2,8 @@ package com.example.crudtest.service;
 
 import com.example.crudtest.model.User;
 
+import java.util.Optional;
+
 public interface UserService {
-    User selectOneUser(User user);
+    Optional<User> selectOneUser(User user);
 }

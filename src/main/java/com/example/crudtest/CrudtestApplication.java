@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.prefs.Preferences;
 
 @RestController
 @SpringBootApplication
@@ -24,11 +26,11 @@ public class CrudtestApplication {
     @Autowired
     private UserService service;
 
-    @GetMapping("/api/getUserInfo")
-    public ResponseEntity<Map<String, Object>> getUserInfo(User user) {
-        User userInfo = this.service.selectOneUser(user);
-        Map<String, Object> map = new HashMap<>();
-        map.put("result", userInfo);
+    @GetMapping("/api/login")
+    public ResponseEntity<Map<String, String>> login(User user) {
+        Optional<User> userInfo = this.service.selectOneUser(user);
+        Map<String, String> map = new HashMap<>();
+        map.put("result", userInfo.get().getEmail());
 
         return ResponseEntity.ok(map);
     }
