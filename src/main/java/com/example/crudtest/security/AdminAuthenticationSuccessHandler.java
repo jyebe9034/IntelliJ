@@ -1,7 +1,11 @@
 package com.example.crudtest.security;
 
+import com.example.crudtest.config.SecurityUtil;
+import com.example.crudtest.model.MemoUserDetails;
+import com.google.gson.Gson;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +14,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class AdminAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     @Override
@@ -18,11 +23,11 @@ public class AdminAuthenticationSuccessHandler extends SimpleUrlAuthenticationSu
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-//        AccountUserDetails userDetails = SecurityUtil.getCurrentAccount();
-//        userDetails.setMgtPw(null);
-//        Map<String, AccountUserDetails> result = new HashMap<>();
-//        result.put("account", userDetails);
-//
-//        response.getWriter().write(new Gson().toJson(result));
+        MemoUserDetails memoUserDetails = SecurityUtil.getCurrentAccount();
+        memoUserDetails.setPassword(null);
+        Map<String, MemoUserDetails> result = new HashMap<>();
+        result.put("memoUser", memoUserDetails);
+
+        response.getWriter().write(new Gson().toJson(result));
     }
 }

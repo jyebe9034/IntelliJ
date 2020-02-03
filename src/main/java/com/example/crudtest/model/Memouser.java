@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user")
 @Data
-public class User {
+public class Memouser {
 
     @Id
     @Column(length = 50, nullable = false)

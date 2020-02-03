@@ -1,9 +1,9 @@
 package com.example.crudtest;
 
 import com.example.crudtest.model.Memo;
-import com.example.crudtest.model.User;
+import com.example.crudtest.model.Memouser;
 import com.example.crudtest.service.MemoService;
-import com.example.crudtest.service.UserService;
+import com.example.crudtest.service.MemoUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.prefs.Preferences;
 
 @RestController
 @SpringBootApplication
@@ -24,11 +23,11 @@ public class CrudtestApplication {
     private MemoService memo;
 
     @Autowired
-    private UserService service;
+    private MemoUserService service;
 
     @GetMapping("/api/login")
-    public ResponseEntity<Map<String, String>> login(User user) {
-        Optional<User> userInfo = this.service.selectOneUser(user);
+    public ResponseEntity<Map<String, String>> login(Memouser user) {
+        Optional<Memouser> userInfo = this.service.selectOneUser(user);
         Map<String, String> map = new HashMap<>();
         map.put("result", userInfo.get().getEmail());
 
