@@ -1,5 +1,6 @@
-package com.example.crudtest.config;
+package com.example.crudtest.security;
 
+import com.example.crudtest.config.SecurityConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {

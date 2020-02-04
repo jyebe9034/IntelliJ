@@ -9,11 +9,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsPasswordService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.Assert;
 
-public class DoaAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
+public class DaoAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
     private volatile String userNotFoundEncodedPassword;
 
@@ -46,6 +45,7 @@ public class DoaAuthenticationProvider extends AbstractUserDetailsAuthentication
 
     @Override
     protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
+        prepareTimingAttackProtection();
         try {
             UserDetails loadedUser = this.getUserDetailsService().loadUserByUsername(username);
             if (loadedUser == null) {
@@ -54,11 +54,28 @@ public class DoaAuthenticationProvider extends AbstractUserDetailsAuthentication
             }
             return loadedUser;
         }
+        catch (UsernameNotFoundException ex) {
+            mitigateAgainstTimingAttack(authentication);
+            throw ex;
+        }
         catch (InternalAuthenticationServiceException ex) {
             throw ex;
         }
         catch (Exception ex) {
             throw new InternalAuthenticationServiceException(ex.getMessage(), ex);
+        }
+    }
+
+    private void mitigateAgainstTimingAttack(UsernamePasswordAuthenticationToken authentication) {
+        if (authentication.getCredentials() != null) {
+            String presentedPassword = authentication.getCredentials().toString();
+            this.passwordEncoder.matches(presentedPassword, this.userNotFoundEncodedPassword);
+        }
+    }
+
+    private void prepareTimingAttackProtection() {
+        if (this.userNotFoundEncodedPassword == null) {
+            this.userNotFoundEncodedPassword = this.passwordEncoder.encode("userNotFoundPassword");
         }
     }
 

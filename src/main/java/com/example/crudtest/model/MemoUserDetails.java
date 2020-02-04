@@ -1,11 +1,20 @@
 package com.example.crudtest.model;
 
+import org.apache.ibatis.type.Alias;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class MemoUserDetails extends Memouser implements UserDetails {
+@Alias("memoUserDetails")
+public class MemoUserDetails extends MemoUser implements UserDetails {
+
+    public MemoUserDetails() {
+    }
+
+    public MemoUserDetails(String email, Collection<? extends GrantedAuthority> authorities) {
+        this.setEmail(email);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

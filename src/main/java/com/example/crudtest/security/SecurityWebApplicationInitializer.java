@@ -1,4 +1,4 @@
-package com.example.crudtest.config;
+package com.example.crudtest.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

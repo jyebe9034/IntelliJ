@@ -34,7 +34,7 @@ public class AdminAuthenticationProvider implements AuthenticationProvider {
             throw new BadCredentialsException("not exist user");
         }
 
-        if(!seedEncoder.matches(userDetails.getPassword(), seedEncoder.encode(userDetails.getPassword()))) {}
+        // if(!seedEncoder.matches(userDetails.getPassword(), seedEncoder.encode(userDetails.getPassword()))) {}
 
         MemoUserDetails memoUserDetails = (MemoUserDetails) userDetails;
 

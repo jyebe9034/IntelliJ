@@ -1,12 +1,13 @@
 package com.example.crudtest;
 
 import com.example.crudtest.model.Memo;
-import com.example.crudtest.model.Memouser;
+import com.example.crudtest.model.MemoUser;
 import com.example.crudtest.service.MemoService;
 import com.example.crudtest.service.MemoUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,10 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
+// @EnableJpaRepositories("com.example")
+@ComponentScan("com.example")
 @SpringBootApplication
+// @SpringBootApplication
 public class CrudtestApplication {
 
     @Autowired
@@ -25,9 +29,9 @@ public class CrudtestApplication {
     @Autowired
     private MemoUserService service;
 
-    @GetMapping("/api/login")
-    public ResponseEntity<Map<String, String>> login(Memouser user) {
-        Optional<Memouser> userInfo = this.service.selectOneUser(user);
+    @GetMapping("/api/jspLogin")
+    public ResponseEntity<Map<String, String>> login(MemoUser user) {
+        Optional<MemoUser> userInfo = this.service.selectOneUser(user);
         Map<String, String> map = new HashMap<>();
         map.put("result", userInfo.get().getEmail());
 

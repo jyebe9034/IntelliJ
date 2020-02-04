@@ -1,4 +1,4 @@
-package com.example.crudtest.config;
+package com.example.crudtest.security;
 
 import com.example.crudtest.model.MemoUserDetails;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;

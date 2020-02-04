@@ -1,10 +1,12 @@
 package com.example.crudtest.service;
 
-import com.example.crudtest.model.Memouser;
+import com.example.crudtest.model.MemoUser;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public interface MemoUserService extends UserDetailsService {
-    Optional<Memouser> selectOneUser(Memouser user);
+    Optional<MemoUser> selectOneUser(MemoUser user);
 }
