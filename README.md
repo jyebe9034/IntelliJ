@@ -21,3 +21,9 @@
 
 ### Whitelabel Error Page
 - 스트링 부트 프로젝트를 실행시켰을때 페이지를 찾지 못하면 브라우저에 뜨는 에러로 부트자체에 내장되어 있음.
+
+---
+# Spring Security
+
+### AuthenticationProvider 
+화면에서 입력한 로그인 정보와 DB에서 가져온 사용자의 정보를 비교해 주는 인터페이스.
