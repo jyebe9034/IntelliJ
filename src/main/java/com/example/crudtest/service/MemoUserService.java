@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
 public interface MemoUserService extends UserDetailsService {
     Optional<MemoUser> selectOneUser(MemoUser user);
 }

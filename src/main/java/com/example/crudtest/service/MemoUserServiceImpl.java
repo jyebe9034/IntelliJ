@@ -1,8 +1,8 @@
 package com.example.crudtest.service;
 
 import com.example.crudtest.dao.MemoUserDao;
-import com.example.crudtest.model.MemoUserDetails;
 import com.example.crudtest.model.MemoUser;
+import com.example.crudtest.model.MemoUserDetails;
 import com.example.crudtest.repo.MemouserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
